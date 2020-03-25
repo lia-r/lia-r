@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Aulia</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://codepen.io/merb/pen/BKqzxv.css">
+	<link rel="stylesheet" href="https://codepen.io/merb/pen/BKqzxv.scss">
+	<link rel="stylesheet" href="https://codepen.io/merb/pen/bpmoEq.scss">
+	<link rel="stylesheet" href="https://codepen.io/merb/pen/bpmoEq.css">
+	<script src="https://codepen.io/merb/pen/BKqzxv.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.1/typed.min.js"></script>
+	<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js"></script>
+	<script>
+	    $(function(){
+	        $(".element").typed({
+	            strings: ["Hii Liaa ❤️", "It's me Ryns :)","I am sorry if i made a mistakes :\"", "I Love You :)"],
+	            typeSpeed: 100,
+	            loop: true,
+	            backSpeed: 20
+	        });
+	    });
+	</script>
+	<style>
+	html, body {
+	  height: 100%;
+	}
+
+	body {
+	  background-size: 100%;
+	}
+
+	p {
+	  margin: 0;
+	  padding: 0;
+	}
+
+	#typed {
+		font-family: 'Share Tech Mono', monospace;
+		color: #ffffff;
+		text-align: center;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		-webkit-transform: translate(-50%, -50%);
+	          transform: translate(-50%, -50%);
+	  	color: #017EC6;
+	}
+
+	#typed .text {
+		letter-spacing: 0.05em;
+		font-size: 15px;
+		padding: 5px 0;
+	}
+
+	#typed .text2 {
+	  letter-spacing: 0.1em;
+	  font-size: 12px;
+	  padding: 20px 0 0;
+	}
+
+	#clock {
+	  font-family: 'Share Tech Mono', monospace;
+	  color: #ffffff;
+	  text-align: center;
+	  position: absolute;
+	  right: 16px;
+	  top: 8px;
+	  /*-webkit-transform: translate(-50%, -50%);
+	          transform: translate(-50%, -50%);*/
+	  color: #017EC6;
+/*	  text-shadow: 0 0 20px #0aafe6, 0 0 20px rgba(10, 175, 230, 0);
+*/	}
+	#clock .time {
+	  letter-spacing: 0.05em;
+	  font-size: 25px;
+	  padding: 5px 0;
+	}
+	#clock .date {
+	  letter-spacing: 0.1em;
+	  font-size: 15px;
+	}
+	#clock .text {
+	  letter-spacing: 0.1em;
+	  font-size: 12px;
+	  padding: 20px 0 0;
+	}
+
+	#clock .typed {
+		letter-spacing: 0.05em;
+		font-size: 60px;
+		padding: 5px 0;
+	}
+	</style>
+</head>
+<body>
+	<div id="typed">
+	   <p class="text"><span class="element"></span></p>
+	   <p class="text2">Forgive me ?</p>
+	   <a class="btn-0" href="https://wa.me/6287859909669?text=Iyaa+di+maafin" style="color: #017EC6;" target="_blank">Yes</a>
+	   <a class="btn-0" href="https://wa.me/6287859909669?text=Ga+di+maafin" style="color: #017EC6;" target="_blank">No</a>
+	</div>
+	<div id="clock">
+		<p class="date">{{ date }}</p>
+		<p class="time">{{ time }}</p>
+		<!-- <p class="typed"><span class="element"></span></p> -->
+	</div>
+	<script id="rendered-js">
+		var clock = new Vue({
+		    el: '#clock',
+		    data: {
+		        time: '',
+		        date: ''
+		    }
+		});
+
+		var week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+		var timerID = setInterval(updateTime, 1000);
+		updateTime();
+		function updateTime() {
+		    var cd = new Date();
+		    clock.time = zeroPadding(cd.getHours(), 2) + ':' + zeroPadding(cd.getMinutes(), 2) + ':' + zeroPadding(cd.getSeconds(), 2);
+		    clock.date = zeroPadding(cd.getFullYear(), 4) + '-' + zeroPadding(cd.getMonth()+1, 2) + '-' + zeroPadding(cd.getDate(), 2) + ' ' + week[cd.getDay()];
+		};
+
+		function zeroPadding(num, digit) {
+		    var zero = '';
+		    for(var i = 0; i < digit; i++) {
+		        zero += '0';
+		    }
+		    return (zero + num).slice(-digit);
+		}
+	</script>
+	<!-- <span class="element"></span> -->
+</body>
+</html>
